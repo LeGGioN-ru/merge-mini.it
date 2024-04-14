@@ -289,7 +289,7 @@ MonoBehaviour:
   _gridSettings: {fileID: 11400000, guid: dfab00598d883834baba01ff7ed34129, type: 2}
   _figureSpawnerSettings: {fileID: 11400000, guid: fd32ce05d6039a744a83631bfc07db91, type: 2}
   _figurePrefab: {fileID: 590461200734477413, guid: 122f02c4d85c5f94cad5f8b569826672, type: 3}
-  _contactFilter2D:
+  _figureFilter:
     useTriggers: 0
     useLayerMask: 1
     useDepth: 0
@@ -299,6 +299,20 @@ MonoBehaviour:
     layerMask:
       serializedVersion: 2
       m_Bits: 64
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  _cellFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 128
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0

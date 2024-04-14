@@ -3,19 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MergeFigure : Figure, ITakeable, IHoldable, IPlaceable
+public class MergeFigure : Figure, ITakeable, IHoldable
 {
-    public void OnHold()
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
+    public void Hold()
     {
 
     }
 
-    public void OnPlace()
+    public bool TryPlace(Cell cell)
     {
+        if (cell.CellModel.IsEmpty == false && cell.CellModel.IsSameFigure(this) == false)
+        {
+            cell.CellModel.DestroyFigure();
+            Destroy(gameObject);
+            return true;
+        }
 
+        return false;
     }
 
-    public void OnTake()
+    public void Take()
     {
 
     }

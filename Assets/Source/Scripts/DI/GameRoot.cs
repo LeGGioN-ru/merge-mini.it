@@ -16,7 +16,8 @@ namespace MiniIT.DI
         [Header("Figure")]
         [SerializeField] private FigureSpawnerSettings _figureSpawnerSettings;
         [SerializeField] private Figure _figurePrefab;
-        [SerializeField] private ContactFilter2D _contactFilter2D;
+        [SerializeField] private ContactFilter2D _figureFilter;
+        [SerializeField] private ContactFilter2D _cellFilter;
 
         public override void InstallBindings()
         {
@@ -27,7 +28,7 @@ namespace MiniIT.DI
             Container.BindInterfacesAndSelfTo<FigureSpawner>().AsSingle().WithArguments(_coroutineSwitcher, _figureSpawnerSettings);
             Container.BindInterfacesAndSelfTo<GridGenerator>().AsSingle().WithArguments(_centerPoint);
             Container.BindInterfacesAndSelfTo<GameStarter>().AsSingle().WithArguments(_gridSettings);
-            Container.BindInterfacesAndSelfTo<FigureGraber>().AsSingle().WithArguments(_contactFilter2D);
+            Container.BindInterfacesAndSelfTo<Graber2D>().AsSingle().WithArguments(_figureFilter, _cellFilter);
         }
     }
 }

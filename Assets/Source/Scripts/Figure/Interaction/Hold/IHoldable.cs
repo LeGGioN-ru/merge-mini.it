@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IHoldable
 {
-    public void OnHold();
+    public Transform GetTransform();
+    public void Hold();
+    public bool TryPlace(Cell cell);
 }

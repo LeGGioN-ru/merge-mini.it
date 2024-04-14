@@ -303,20 +303,10 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  _cellFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 128
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
+  _allFigures:
+  - {fileID: 590461200734477413, guid: 122f02c4d85c5f94cad5f8b569826672, type: 3}
+  - {fileID: 590461200734477413, guid: 6d85b8cd10cab0c44b81ef713cbe7c00, type: 3}
+  - {fileID: 590461200734477413, guid: f79ba966e75e6aa499442f39e5f4dfad, type: 3}
 --- !u!114 &862874355
 MonoBehaviour:
   m_ObjectHideFlags: 0

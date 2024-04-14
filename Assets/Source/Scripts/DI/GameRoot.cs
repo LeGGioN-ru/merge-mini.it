@@ -1,6 +1,7 @@
 using MiniIT.FIGURE;
 using MiniIT.GAME;
 using MiniIT.GRID;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +18,9 @@ namespace MiniIT.DI
         [SerializeField] private FigureSpawnerSettings _figureSpawnerSettings;
         [SerializeField] private Figure _figurePrefab;
         [SerializeField] private ContactFilter2D _figureFilter;
-        [SerializeField] private ContactFilter2D _cellFilter;
+        [Header("Figure Upgrade")]
+        [SerializeField] private List<MergeFigure> _allFigures;
+
 
         public override void InstallBindings()
         {
@@ -28,7 +31,8 @@ namespace MiniIT.DI
             Container.BindInterfacesAndSelfTo<FigureSpawner>().AsSingle().WithArguments(_coroutineSwitcher, _figureSpawnerSettings);
             Container.BindInterfacesAndSelfTo<GridGenerator>().AsSingle().WithArguments(_centerPoint);
             Container.BindInterfacesAndSelfTo<GameStarter>().AsSingle().WithArguments(_gridSettings);
-            Container.BindInterfacesAndSelfTo<Graber2D>().AsSingle().WithArguments(_figureFilter, _cellFilter);
+            Container.BindInterfacesAndSelfTo<Graber2D>().AsSingle().WithArguments(_figureFilter);
+            Container.BindInterfacesAndSelfTo<FigureUpgradeFactory>().AsSingle().WithArguments(_allFigures);
         }
     }
 }

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CellModel
 {
-    private Figure _figure;
-
-    public bool IsEmpty => _figure == null;
+    public Figure Figure { get; private set; }
+    public bool IsEmpty => Figure == null;
 
     public void SetFigure(Figure figure)
     {
@@ -15,24 +14,24 @@ public class CellModel
             throw new NullReferenceException();
         }
 
-        _figure = figure;
+        Figure = figure;
     }
 
     public void ClearFigure()
     {
-        _figure = null;
+        Figure = null;
     }
 
     public bool IsSameFigure(Figure figure)
     {
-        return _figure == figure;
+        return Figure == figure;
     }
 
     public void DestroyFigure()
     {
-        if (_figure != null)
+        if (Figure != null)
         {
-            GameObject.Destroy(_figure.gameObject);
+            GameObject.Destroy(Figure.gameObject);
         }
     }
 }

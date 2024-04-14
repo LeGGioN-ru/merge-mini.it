@@ -6,5 +6,5 @@ public interface IHoldable
 {
     public Transform GetTransform();
     public void Hold();
-    public bool TryPlace(Cell cell);
+    public void Place();
 }

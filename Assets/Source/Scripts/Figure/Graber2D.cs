@@ -6,15 +6,12 @@ using Zenject;
 public class Graber2D : ITickable
 {
     private readonly ContactFilter2D _figureFilter;
-    private readonly ContactFilter2D _cellFilter;
     private readonly List<Collider2D> _colliders;
 
     private IHoldable _holdable;
-    private Cell _cell;
 
-    public Graber2D(ContactFilter2D figureFilter, ContactFilter2D cellFilter)
+    public Graber2D(ContactFilter2D figureFilter)
     {
-        _cellFilter = cellFilter;
         _figureFilter = figureFilter;
         _colliders = new List<Collider2D>();
     }
@@ -23,11 +20,11 @@ public class Graber2D : ITickable
     {
         if (_holdable != null)
         {
-            MoveHoldableObject(_holdable, MousePositionGetter.GetValidZCurrentMousePosition());
+            _holdable.Hold();
 
             if (Input.GetMouseButtonUp(0))
             {
-                PlaceHoldableObject(ref _holdable);
+                PlaceHoldableObject();
             }
 
             return;
@@ -52,51 +49,14 @@ public class Graber2D : ITickable
         }
     }
 
-    private void MoveHoldableObject(IHoldable holdable, Vector3 position)
+    private void PlaceHoldableObject()
     {
-        holdable.Hold();
-        holdable.GetTransform().position = position;
-    }
-
-    private void PlaceHoldableObject(ref IHoldable holdable)
-    {
-        Physics2D.OverlapPoint(MousePositionGetter.GetValidZCurrentMousePosition(), _cellFilter, _colliders);
-
-        Debug.Log(_colliders);
-
-        if (_colliders.Count > 0 && _colliders.FirstOrDefault().TryGetComponent(out Cell cell))
-        {
-            if (holdable.TryPlace(cell))
-            {
-            }
-            else if (cell.CellModel.IsEmpty)
-            {
-                cell.SetFigure(holdable);
-                _cell.ClearFigure();
-            }
-            else
-            {
-                _cell.UpdatePosition(holdable);
-            }
-        }
-        else
-        {
-            _cell.UpdatePosition(holdable);
-        }
-
-        holdable = null;
-        _cell = null;
+        _holdable.Place();
+        _holdable = null;
     }
 
     private void StartHoldObject(IHoldable holdable)
     {
         _holdable = holdable;
-        Physics2D.OverlapPoint(MousePositionGetter.GetValidZCurrentMousePosition(), _cellFilter, _colliders);
-
-        if (_colliders.FirstOrDefault().TryGetComponent(out Cell cell))
-        {
-            _cell = cell;
-            Debug.Log(_cell);
-        }
     }
 }

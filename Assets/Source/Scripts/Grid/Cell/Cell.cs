@@ -2,55 +2,61 @@ using MiniIT.FIGURE;
 using UnityEngine;
 using Zenject;
 using System;
+using NaughtyAttributes;
+using MiniIT.INTERACTION;
 
-public class Cell : MonoBehaviour
+namespace MiniIT.GRID.CELL
 {
-    public CellModel CellModel { get; private set; } = null;
-
-    [Inject]
-    public void Construct(CellModel cellModel)
+    public class Cell : MonoBehaviour
     {
-        CellModel = cellModel;
-    }
+        public CellModel CellModel { get; private set; } = null;
 
-    public void SetFigure(Figure figure)
-    {
-        CellModel.SetFigure(figure);
-        UpdatePosition(figure);
-    }
-
-    public void SetFigure(IHoldable holdable)
-    {
-        SetFigure(ToFigure(holdable));
-    }
-
-    public void ClearFigure()
-    {
-        CellModel.ClearFigure();
-    }
-
-    public void UpdatePosition(Figure figure)
-    {
-        figure.transform.parent = transform;
-        figure.transform.position = transform.position;
-    }
-
-    public void UpdatePosition(IHoldable holdable)
-    {
-        UpdatePosition(ToFigure(holdable));
-    }
-
-    private Figure ToFigure(IHoldable holdable)
-    {
-        Figure figure = holdable as Figure;
-
-        if (figure == null)
+        [Inject]
+        public void Construct(CellModel cellModel)
         {
-            throw new ArgumentException("All holdables must be figure type");
+            CellModel = cellModel;
+
         }
 
-        return figure;
-    }
+        public void SetFigure(Figure figure)
+        {
+            CellModel.SetFigure(figure);
+            UpdatePosition(figure);
+        }
 
-    public class Factory : PlaceholderFactory<Cell> { }
+        public void SetFigure(IHoldable holdable)
+        {
+            SetFigure(ToFigure(holdable));
+        }
+
+        public void ClearFigure()
+        {
+            CellModel.ClearFigure();
+        }
+
+        public void UpdatePosition(Figure figure)
+        {
+            figure.transform.parent = transform;
+            figure.transform.position = transform.position;
+        }
+
+        public void UpdatePosition(IHoldable holdable)
+        {
+            UpdatePosition(ToFigure(holdable));
+        }
+
+        private Figure ToFigure(IHoldable holdable)
+        {
+            Figure figure = holdable as Figure;
+
+            if (figure == null)
+            {
+                throw new ArgumentException("All holdables must be figure type");
+            }
+
+            return figure;
+        }
+
+        public class Factory : PlaceholderFactory<Cell> { }
+    }
 }

@@ -1,16 +1,16 @@
+using MiniIT.GRID.CELL;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace MiniIT.GRID
 {
-    public class GridGenerator
+    public class GridGenerator : ICellContainer
     {
         private readonly Transform _centerPoint;
         private readonly Cell.Factory _cellFactory;
         private readonly List<Cell> _cells;
 
-        public IReadOnlyList<Cell> Cells => _cells;
+        public IReadOnlyCollection<Cell> Cells => _cells;
 
         public GridGenerator(Transform centerPoint, Cell.Factory factory)
         {

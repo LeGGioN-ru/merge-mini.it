@@ -1,17 +1,21 @@
 using UnityEngine;
 
-public static class MousePositionGetter
+namespace MiniIT.UTILITY
 {
-    public static Vector3 GetCurrentMousePosition()
+    public static class MousePositionGetter
     {
-        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        public static Vector3 GetCurrentMousePosition()
+        {
+            return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        public static Vector3 GetValidZCurrentMousePosition()
+        {
+            Vector3 mousePosition = GetCurrentMousePosition();
+            mousePosition.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
+
+            return mousePosition;
+        }
     }
 
-    public static Vector3 GetValidZCurrentMousePosition()
-    {
-        Vector3 mousePosition = GetCurrentMousePosition();
-        mousePosition.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
-
-        return mousePosition;
-    }
 }

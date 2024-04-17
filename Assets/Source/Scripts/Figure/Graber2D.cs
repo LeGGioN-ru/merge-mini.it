@@ -1,5 +1,6 @@
+using MiniIT.INTERACTION;
+using MiniIT.UTILITY;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,47 @@ public class Graber2D : ITickable
 
     public void Tick()
     {
+        if (TryHoldObject())
+        {
+            return;
+        }
+
+        TryTakeObject();
+    }
+
+    private bool TryTakeObject()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Physics2D.OverlapPoint(MousePositionGetter.GetValidZCurrentMousePosition(), _figureFilter, _colliders);
+
+            if (_colliders.Count == 0)
+            {
+                return false;
+            }
+
+            bool isTaken = false;
+
+            if (_colliders.TryTakeFirstObject(out ITakeable takeable) && takeable.IsTaken == false)
+            {
+                takeable.Take();
+                isTaken = true;
+            }
+
+            if (_colliders.TryTakeFirstObject(out IHoldable holdable))
+            {
+                StartHoldObject(holdable);
+                isTaken = true;
+            }
+
+            return isTaken;
+        }
+
+        return false;
+    }
+
+    private bool TryHoldObject()
+    {
         if (_holdable != null)
         {
             _holdable.Hold();
@@ -27,26 +69,10 @@ public class Graber2D : ITickable
                 PlaceHoldableObject();
             }
 
-            return;
+            return true;
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Physics2D.OverlapPoint(MousePositionGetter.GetValidZCurrentMousePosition(), _figureFilter, _colliders);
-
-            if (_colliders.Count == 0)
-                return;
-
-            if (_colliders.FirstOrDefault().TryGetComponent(out ITakeable takeable))
-            {
-                takeable.Take();
-            }
-
-            if (_colliders.FirstOrDefault().TryGetComponent(out IHoldable holdable))
-            {
-                StartHoldObject(holdable);
-            }
-        }
+        return false;
     }
 
     private void PlaceHoldableObject()

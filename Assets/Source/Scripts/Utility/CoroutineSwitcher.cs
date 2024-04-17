@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public class CoroutineSwitcher : MonoBehaviour
+namespace MiniIT.UTILITY
 {
-    
+    public class CoroutineSwitcher : MonoBehaviour
+    {
+
+    }
+
 }

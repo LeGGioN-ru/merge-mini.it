@@ -16,7 +16,6 @@ namespace MiniIT.DI
 {
     public class GameRoot : MonoInstaller
     {
-        [SerializeField] private CoroutineSwitcher _coroutineSwitcher;
         [Header("Game Settings")]
         [SerializeField] private List<GameTypeSettings> _settings;
         [Header("Grid")]
@@ -27,6 +26,9 @@ namespace MiniIT.DI
         [Header("Figure Upgrade")]
         [Tooltip("Please set unique figures with unique levels!")]
         [SerializeField] private List<MergeFigure> _mergeFigures;
+        [Header("Other")]
+        [SerializeField] private Camera _camera;
+        [SerializeField] private CoroutineSwitcher _coroutineSwitcher;
 
         private void OnValidate()
         {
@@ -46,7 +48,9 @@ namespace MiniIT.DI
             Container.BindFactory<AnimationTweenSettings, AnimationTween, AnimationTween.Factory>().FromFactory<AnimationFactory>();
 
             Container.BindInstance(gameTypeSettings.FiguresWeight);
+            Container.BindInstance(_camera);
 
+            Container.BindInterfacesAndSelfTo<CameraSizeSetter>().AsSingle();
             Container.BindInterfacesAndSelfTo<Wallet>().AsSingle();
             Container.BindInterfacesAndSelfTo<CellModel>().AsTransient();
             Container.BindInterfacesAndSelfTo<FigureSpawner>().AsSingle().WithArguments(_coroutineSwitcher, gameTypeSettings.FigureSpawnerSettings);

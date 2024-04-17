@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: UIButtonIdDatabase
   m_EditorClassIdentifier: 
   Database:
-    Items: []
+    Items:
+    - Category: MenuScene
+      Name: Back
+    - Category: MenuScene
+      Name: Exit
+    - Category: MenuScene
+      Name: ExtendedPlay
+    - Category: MenuScene
+      Name: Play
+    - Category: MenuScene
+      Name: StandartPlay
+    - Category: None
+      Name: None

@@ -2518,8 +2518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dcf48f166cc5d34992060f0be1ba434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 519420031}
-  _coroutineSwitcher: {fileID: 862874356}
   _settings:
   - <GameType>k__BackingField: 1
     <GridSettings>k__BackingField: {fileID: 11400000, guid: cd1bbf135e0c74540a1d4b4383dc1d81, type: 2}
@@ -2530,9 +2528,9 @@ MonoBehaviour:
     - <Figure>k__BackingField: {fileID: 6706802364017596287, guid: c1c246fb3e520f34db149e7ac02bf93f, type: 3}
       <Weight>k__BackingField: 0.4
     - <Figure>k__BackingField: {fileID: 4694770299162545222, guid: 2ddf863b3c7d2064ab820a67af61f12b, type: 3}
-      <Weight>k__BackingField: 0.2
+      <Weight>k__BackingField: 0.3
     - <Figure>k__BackingField: {fileID: -3579569269672607797, guid: 0aa6decc9c09359449877e8694a1f1ef, type: 3}
-      <Weight>k__BackingField: 0.05
+      <Weight>k__BackingField: 0.2
   - <GameType>k__BackingField: 0
     <GridSettings>k__BackingField: {fileID: 11400000, guid: dfab00598d883834baba01ff7ed34129, type: 2}
     <FigureSpawnerSettings>k__BackingField: {fileID: 11400000, guid: fd32ce05d6039a744a83631bfc07db91, type: 2}
@@ -2546,6 +2544,8 @@ MonoBehaviour:
   - {fileID: 590461200734477413, guid: 122f02c4d85c5f94cad5f8b569826672, type: 3}
   - {fileID: 6706802364017596287, guid: c1c246fb3e520f34db149e7ac02bf93f, type: 3}
   - {fileID: 7477351519883663455, guid: fb34a57f43faf30438a5692ac8cb5c31, type: 3}
+  _camera: {fileID: 519420031}
+  _coroutineSwitcher: {fileID: 862874356}
 --- !u!114 &862874355
 MonoBehaviour:
   m_ObjectHideFlags: 0

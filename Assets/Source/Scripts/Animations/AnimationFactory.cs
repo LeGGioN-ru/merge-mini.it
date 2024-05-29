@@ -4,13 +4,6 @@ using Zenject;
 
 public class AnimationFactory : IFactory< AnimationTweenSettings, AnimationTween>
 {
-    private readonly DiContainer _diContainer;
-
-    public AnimationFactory(DiContainer diContainer)
-    {
-        _diContainer = diContainer;
-    }
-
     public AnimationTween Create(AnimationTweenSettings settings)
     {
         switch (settings.AnimationType)

@@ -15,7 +15,6 @@ namespace MiniIT.GRID.CELL
         public void Construct(CellModel cellModel)
         {
             CellModel = cellModel;
-
         }
 
         public void SetFigure(Figure figure)

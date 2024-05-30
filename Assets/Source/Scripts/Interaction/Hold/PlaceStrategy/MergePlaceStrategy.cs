@@ -2,14 +2,15 @@ using MiniIT.FIGURE;
 using MiniIT.GRID;
 using MiniIT.GRID.CELL;
 using UnityEngine;
+using Zenject;
 
 namespace MiniIT.INTERACTION
 {
     public class MergePlaceStrategy : FreePlaceStrategy
     {
-        private readonly FigureUpgradeFactory _factory;
+        private readonly Figure.FactoryLevel _factory;
 
-        public MergePlaceStrategy(GridGenerator gridGenerator, ContactFilter2D cellFilter, FigureUpgradeFactory figureUpgradeFactory) : base(gridGenerator, cellFilter)
+        public MergePlaceStrategy(GridGenerator gridGenerator, ContactFilter2D cellFilter, Figure.FactoryLevel figureUpgradeFactory) : base(gridGenerator, cellFilter)
         {
             _factory = figureUpgradeFactory;
         }
@@ -35,15 +36,14 @@ namespace MiniIT.INTERACTION
         {
             if (holdable is MergeFigure mergeFigure && newCell.CellModel.Figure is MergeFigure mergeFigure2)
             {
-                if (mergeFigure != null && mergeFigure2 != null)
+                if (mergeFigure.Level == mergeFigure2.Level)
                 {
-                    if (mergeFigure.Level == mergeFigure2.Level)
+                    Figure figure = _factory.Create(mergeFigure.Level);
+
+                    if (figure != null)
                     {
-                        if (_factory.TryCreateUpgradedFigure(mergeFigure.Level, out Figure figure))
-                        {
-                            newFigure = figure;
-                            return true;
-                        }
+                        newFigure = figure;
+                        return true;
                     }
                 }
             }

@@ -1,6 +1,7 @@
 using MiniIT.FIGURE;
 using MiniIT.GRID.CELL;
 using MiniIT.UTILITY;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +45,7 @@ namespace MiniIT.INTERACTION
                 }
             }
 
-            throw new System.Exception();
+            throw new Exception();
         }
 
         protected bool TryGetNewCell(out Cell newCell)
@@ -61,5 +62,4 @@ namespace MiniIT.INTERACTION
             return false;
         }
     }
-
 }

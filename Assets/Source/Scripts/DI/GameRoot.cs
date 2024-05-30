@@ -43,12 +43,14 @@ namespace MiniIT.DI
             SignalBusInstaller.Install(Container);
             Container.DeclareSignal<MoneyChanged>();
 
+            Container.BindFactory<int, Figure, Figure.FactoryLevel>().FromFactory<FigureUpgradeFactory>();
             Container.BindFactory<Cell, Cell.Factory>().FromComponentInNewPrefab(_cellPrefab).AsSingle();
             Container.BindFactory<Figure, Figure.Factory>().FromFactory<WeightFigureFactory>();
             Container.BindFactory<AnimationTweenSettings, AnimationTween, AnimationTween.Factory>().FromFactory<AnimationFactory>();
 
             Container.BindInstance(gameTypeSettings.FiguresWeight);
             Container.BindInstance(_camera);
+            Container.BindInstance(_mergeFigures);
 
             Container.BindInterfacesAndSelfTo<CameraSizeSetter>().AsSingle();
             Container.BindInterfacesAndSelfTo<Wallet>().AsSingle();
@@ -57,7 +59,6 @@ namespace MiniIT.DI
             Container.BindInterfacesAndSelfTo<GridGenerator>().AsSingle().WithArguments(_centerPoint);
             Container.BindInterfacesAndSelfTo<GameStarter>().AsSingle().WithArguments(gameTypeSettings.GridSettings);
             Container.BindInterfacesAndSelfTo<Graber2D>().AsSingle().WithArguments(AppConstants.Filters.FigureFilter);
-            Container.BindInterfacesAndSelfTo<FigureUpgradeFactory>().AsSingle().WithArguments(_mergeFigures);
         }
 
         private GameTypeSettings GetCurrentGameTypeSettings()

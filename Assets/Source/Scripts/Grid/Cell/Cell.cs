@@ -1,9 +1,8 @@
 using MiniIT.FIGURE;
+using MiniIT.INTERACTION;
+using System;
 using UnityEngine;
 using Zenject;
-using System;
-using NaughtyAttributes;
-using MiniIT.INTERACTION;
 
 namespace MiniIT.GRID.CELL
 {

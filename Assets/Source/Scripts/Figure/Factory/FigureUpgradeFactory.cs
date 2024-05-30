@@ -4,7 +4,7 @@ using Zenject;
 
 namespace MiniIT.FIGURE
 {
-    public class FigureUpgradeFactory 
+    public class FigureUpgradeFactory : IFactory<int, Figure>
     {
         private readonly List<MergeFigure> _figurePrefabs;
         private readonly DiContainer _diContainer;
@@ -16,19 +16,19 @@ namespace MiniIT.FIGURE
             _diContainer = diContainer;
         }
 
-        public bool TryCreateUpgradedFigure(int currentLevel, out Figure figure)
+        public Figure Create(int currentLevel)
         {
+            Figure figure = null;
+
             currentLevel++;
 
-            if (currentLevel >= _figurePrefabs.Count)
+            if (currentLevel < _figurePrefabs.Count)
             {
-                figure = null;
-                return false;
+                figure = _figurePrefabs[currentLevel];
+                figure = _diContainer.InstantiatePrefabForComponent<MergeFigure>(figure);
             }
 
-            figure = _figurePrefabs[currentLevel];
-            figure = _diContainer.InstantiatePrefabForComponent<MergeFigure>(figure);
-            return true;
+            return figure;
         }
     }
 }

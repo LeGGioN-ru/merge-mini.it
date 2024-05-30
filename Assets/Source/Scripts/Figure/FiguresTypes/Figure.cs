@@ -4,7 +4,7 @@ using Zenject;
 
 namespace MiniIT.FIGURE
 {
-    public abstract class Figure : MonoBehaviour, IReadOnlyFigure
+    public abstract class Figure : MonoBehaviour
     {
         private AnimationTween _incarnateAnimation;
 
@@ -17,16 +17,12 @@ namespace MiniIT.FIGURE
             _incarnateAnimation = animationFactory.Create(incarnateSettings);
         }
 
-        /// <summary>
-        /// In fact, in a large potential project, everything should have an appearance animation. 
-        /// So having this method in the base class makes sense. Since I have 2 animation in my project, 
-        /// I don’t call this animation when the figures appear, otherwise it will get boring.
-        /// </summary>
         public void Incarnate()
         {
             _incarnateAnimation.Play();
         }
 
         public class Factory : PlaceholderFactory<Figure> { }
+        public class FactoryLevel : PlaceholderFactory<int, Figure> { }
     }
 }

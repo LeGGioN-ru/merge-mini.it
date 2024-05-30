@@ -35,18 +35,18 @@ namespace MiniIT.FIGURE
             _isTaken = OnTake();
         }
 
+        protected virtual bool OnTake()
+        {
+            StartCoroutine(DestroyRoutine());
+            return true;
+        }
+
         protected IEnumerator DestroyRoutine()
         {
             yield return new WaitUntil(() => _takeSound.isPlaying == false && _pickUpAnimationTween.IsPlaying() == false && _isTaken);
 
             _pickUpAnimationTween.Kill();
             Destroy(gameObject);
-        }
-
-        protected virtual bool OnTake()
-        {
-            StartCoroutine(DestroyRoutine());
-            return true;
         }
     }
 }

@@ -6,22 +6,19 @@ namespace MiniIT.GAME
 {
     public class GameStarter : IInitializable
     {
-        private readonly GridGenerator _gridGenerator;
-        private readonly GridSettings _gridSettings;
-        private readonly FigureSpawner _figureSpawner;
+        private readonly IGridGenerator _gridGenerator;
+        private readonly IFigureSpawner _figureSpawner;
 
-        public GameStarter(GridGenerator gridGenerator, 
-            GridSettings gridSettings,
-            FigureSpawner figureSpawner)
+        public GameStarter(IGridGenerator gridGenerator, 
+            IFigureSpawner figureSpawner)
         {
             _figureSpawner = figureSpawner;
-            _gridSettings = gridSettings;
             _gridGenerator = gridGenerator;
         }
 
         public void Initialize()
         {
-            _gridGenerator.Generate(_gridSettings.ColumnsCount, _gridSettings.RowsCount, _gridSettings.Space);
+            _gridGenerator.Generate();
             _figureSpawner.StartSpawn();
         }
     }

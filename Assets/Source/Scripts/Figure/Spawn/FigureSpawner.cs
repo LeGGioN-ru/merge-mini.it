@@ -3,11 +3,10 @@ using MiniIT.UTILITY;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using Zenject;
 
 namespace MiniIT.FIGURE
 {
-    public class FigureSpawner
+    public class FigureSpawner : IFigureSpawner
     {
         private readonly Figure.Factory _figureFactory;
         private readonly FigureSpawnerSettings _settings;
@@ -53,7 +52,7 @@ namespace MiniIT.FIGURE
                 yield return _delaySpawn;
 
                 Cell freeCell = _cellContainer.Cells.FirstOrDefault(x => x.CellModel.IsEmpty);
-                
+
                 if (freeCell != null)
                 {
                     Figure figure = _figureFactory.Create();

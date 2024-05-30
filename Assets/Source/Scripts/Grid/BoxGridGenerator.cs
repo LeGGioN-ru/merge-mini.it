@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MiniIT.GRID
 {
-    public class GridGenerator : ICellContainer, IGridGenerator
+    public class BoxGridGenerator : ICellContainer, IGridGenerator
     {
         private readonly Transform _centerPoint;
         private readonly Cell.Factory _cellFactory;
@@ -13,7 +13,7 @@ namespace MiniIT.GRID
 
         public IReadOnlyCollection<Cell> Cells => _cells;
 
-        public GridGenerator(Transform centerPoint, Cell.Factory factory, GridSettings gridSettings)
+        public BoxGridGenerator(Transform centerPoint, Cell.Factory factory, GridSettings gridSettings)
         {
             _settings = gridSettings;
             _centerPoint = centerPoint;

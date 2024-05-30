@@ -56,7 +56,7 @@ namespace MiniIT.DI
             Container.BindInterfacesAndSelfTo<Wallet>().AsSingle();
             Container.BindInterfacesAndSelfTo<CellModel>().AsTransient();
             Container.BindInterfacesAndSelfTo<FigureSpawner>().AsSingle().WithArguments(_coroutineSwitcher, gameTypeSettings.FigureSpawnerSettings);
-            Container.BindInterfacesAndSelfTo<GridGenerator>().AsSingle().WithArguments(_centerPoint, gameTypeSettings.GridSettings);
+            Container.BindInterfacesAndSelfTo<BoxGridGenerator>().AsSingle().WithArguments(_centerPoint, gameTypeSettings.GridSettings);
             Container.BindInterfacesAndSelfTo<GameStarter>().AsSingle();
             Container.BindInterfacesAndSelfTo<Graber2D>().AsSingle().WithArguments(AppConstants.Filters.FigureFilter);
         }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace MiniIT.INTERACTION
 {
-    public class FreePlaceStrategy : IPlaceStrategy
+    public class FreePlaceStrategy : IPlacementConfiguration
     {
         private readonly ICellContainer _cellContainer;
         private readonly List<Collider2D> _colliders;

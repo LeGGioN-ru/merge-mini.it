@@ -1,6 +1,6 @@
 namespace MiniIT.INTERACTION
 {
-    public interface IPlaceStrategy
+    public interface IPlacementConfiguration
     {
         public void Place(IHoldable holdable);
     }

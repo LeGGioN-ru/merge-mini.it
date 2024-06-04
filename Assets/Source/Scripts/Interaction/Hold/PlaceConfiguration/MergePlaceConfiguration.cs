@@ -1,15 +1,14 @@
 using MiniIT.FIGURE;
-using MiniIT.GRID;
 using MiniIT.GRID.CELL;
 using UnityEngine;
 
 namespace MiniIT.INTERACTION
 {
-    public class MergePlaceStrategy : FreePlaceStrategy
+    public class MergePlaceConfiguration : FreePlaceStrategy
     {
         private readonly Figure.FactoryLevel _factory;
 
-        public MergePlaceStrategy(ICellContainer cellContainer, ContactFilter2D cellFilter, Figure.FactoryLevel figureUpgradeFactory) : base(cellContainer, cellFilter)
+        public MergePlaceConfiguration(ICellContainer cellContainer, ContactFilter2D cellFilter, Figure.FactoryLevel figureUpgradeFactory) : base(cellContainer, cellFilter)
         {
             _factory = figureUpgradeFactory;
         }

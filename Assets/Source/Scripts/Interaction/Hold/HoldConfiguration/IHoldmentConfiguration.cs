@@ -1,7 +1,7 @@
 
 namespace MiniIT.INTERACTION
 {
-    public interface IHoldStrategy
+    public interface IHoldmentConfiguration
     {
         public void Hold(IHoldable holdable);
     }

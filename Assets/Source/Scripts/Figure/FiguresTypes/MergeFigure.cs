@@ -6,16 +6,16 @@ namespace MiniIT.FIGURE
 {
     public class MergeFigure : Figure, IHoldable
     {
-        private IPlaceStrategy _placeStrategy;
-        private IHoldStrategy _holdStrategy;
+        private IPlacementConfiguration _placeConfiguration;
+        private IHoldmentConfiguration _holdConfiguration;
 
         public int Level { get; private set; }
 
         [Inject]
-        public void Construct(IPlaceStrategy placeStrategy, IHoldStrategy holdStrategy, int level)
+        public void Construct(IPlacementConfiguration placeConfiguration, IHoldmentConfiguration holdConfiguration, int level)
         {
-            _placeStrategy = placeStrategy;
-            _holdStrategy = holdStrategy;
+            _placeConfiguration = placeConfiguration;
+            _holdConfiguration = holdConfiguration;
             Level = level;
         }
 
@@ -26,12 +26,12 @@ namespace MiniIT.FIGURE
 
         public void Hold()
         {
-            _holdStrategy.Hold(this);
+            _holdConfiguration.Hold(this);
         }
 
         public void Place()
         {
-            _placeStrategy.Place(this);
+            _placeConfiguration.Place(this);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace MiniIT.DI
             Container.BindInterfacesAndSelfTo<MergeFigure>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<BaseHoldStrategy>().AsSingle();
-            Container.BindInterfacesAndSelfTo<MergePlaceStrategy>().AsSingle().WithArguments(AppConstants.Filters.CellFilter);
+            Container.BindInterfacesAndSelfTo<MergePlaceConfiguration>().AsSingle().WithArguments(AppConstants.Filters.CellFilter);
         }
     }
 }

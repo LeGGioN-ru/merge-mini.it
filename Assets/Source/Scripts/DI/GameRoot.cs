@@ -54,7 +54,6 @@ namespace MiniIT.DI
 
             Container.BindInterfacesAndSelfTo<CameraSizeSetter>().AsSingle();
             Container.BindInterfacesAndSelfTo<Wallet>().AsSingle();
-            Container.BindInterfacesAndSelfTo<CellModel>().AsTransient();
             Container.BindInterfacesAndSelfTo<FigureSpawner>().AsSingle().WithArguments(_coroutineSwitcher, gameTypeSettings.FigureSpawnerSettings);
             Container.BindInterfacesAndSelfTo<BoxGridGenerator>().AsSingle().WithArguments(_centerPoint, gameTypeSettings.GridSettings);
             Container.BindInterfacesAndSelfTo<GameStarter>().AsSingle();

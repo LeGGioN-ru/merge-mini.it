@@ -10,10 +10,9 @@ namespace MiniIT.GRID.CELL
     {
         public CellModel CellModel { get; private set; } = null;
 
-        [Inject]
-        public void Construct(CellModel cellModel)
+        private void Awake()
         {
-            CellModel = cellModel;
+            CellModel = new CellModel();
         }
 
         public void SetFigure(Figure figure)

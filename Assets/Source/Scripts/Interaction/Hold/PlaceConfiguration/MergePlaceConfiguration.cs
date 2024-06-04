@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MiniIT.INTERACTION
 {
-    public class MergePlaceConfiguration : FreePlaceStrategy
+    public class MergePlaceConfiguration : FreePlaceConfiguration
     {
         private readonly Figure.FactoryLevel _factory;
 
